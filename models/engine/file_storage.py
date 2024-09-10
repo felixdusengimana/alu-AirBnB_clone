@@ -22,6 +22,17 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    # Mapping class names to classes
+    __class_map = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
+
     def all(self):
         """
         Returns the dictionary of all objects currently stored.
@@ -64,8 +75,9 @@ class FileStorage:
                 obj_dict = json.load(file)
 
                 for key, value in obj_dict.items():
-                    self.__objects[key] = eval(
-                        f"{value['__class__']}(**{value})")
-
+                    class_name = value['__class__']
+                    if class_name in FileStorage.__class_map:
+                        cls = FileStorage.__class_map[class_name]
+                        self.__objects[key] = cls(**value)
         except FileNotFoundError:
             pass
