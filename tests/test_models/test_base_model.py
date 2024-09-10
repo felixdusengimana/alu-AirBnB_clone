@@ -20,7 +20,8 @@ class TestBaseModel(unittest.TestCase):
     def test_class_type(self):
         """Test the class type of the instance."""
         base = BaseModel()
-        self.assertEqual(str(type(base)), "<class 'models.base_model.BaseModel'>")
+        expected_type = "<class 'models.base_model.BaseModel'>"
+        self.assertEqual(str(type(base)), expected_type)
 
     def test_save(self):
         """Test the save method updates the updated_at attribute."""
@@ -41,7 +42,8 @@ class TestBaseModel(unittest.TestCase):
     def test_str_representation(self):
         """Test the string representation of the object."""
         base = BaseModel()
-        expected_output = f"[{base.__class__.__name__}] ({base.id}) {base.__dict__}\n"
+        expected_output = (f"[{base.__class__.__name__}] ({base.id}) "
+                           f"{base.__dict__}\n")
         with patch("sys.stdout", new=StringIO()) as fake_out:
             print(base)
             self.assertEqual(fake_out.getvalue(), expected_output)

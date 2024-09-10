@@ -3,10 +3,10 @@
 Defines unittests for models/engine/file_storage.py.
 """
 import os
-import json
+# import json
 import models
 import unittest
-from datetime import datetime
+# from datetime import datetime
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
