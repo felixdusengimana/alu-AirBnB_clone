@@ -4,7 +4,16 @@ import models
 
 
 class BaseModel:
-    """Defines all common attributes/methods for other classes."""
+    """
+    Public instance attributes:
+        - id: string, a unique id for each instance (assigned using uuid4).
+        - created_at: datetime, assigned the current datetime when an instance is created.
+        - updated_at: datetime, assigned the current datetime when an instance is created and updated when the instance changes.
+    
+    Public instance methods:
+        - save(): updates the public instance attribute updated_at with the current datetime.
+        - to_dict(): returns a dictionary containing all keys/values of the __dict__ of the instance with some modifications (conversion to ISO format, adding a __class__ key).
+    """
 
     def __init__(self, *args, **kwargs):
         """Initializes the BaseModel with unique ID and creation time."""
