@@ -1,0 +1,1 @@
+![project details](/web_static/images/image.png)
